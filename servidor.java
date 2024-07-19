@@ -9,7 +9,7 @@ public class servidor {
         try {
             Registry registry = LocateRegistry.createRegistry(1099); 
    
-            Naming.rebind("rmi://localhost:1099/Ola", new ola_Imple()); // Registra o objeto remoto no Registry
+            Naming.rebind("rmi://localhost:1099/liziane", new ola_Imple()); // Registra o objeto remoto no Registry
             
             System.out.println("Servidor pronto");
             
