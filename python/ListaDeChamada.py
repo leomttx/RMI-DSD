@@ -1,5 +1,7 @@
 from datetime import datetime
+import Pyro4
 
+@Pyro4.expose
 class ListaDeChamada():
     def __init__(self, disciplina, data = None):
         self.alunos = []
