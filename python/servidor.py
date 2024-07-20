@@ -1,13 +1,16 @@
-import Pyro4
+import Pyro4, sys
+from ListaDeChamada import ListaDeChamada
 
-@Pyro4.expose
-class GreetingMaker(object):
-    def get_fortune(self, name):
-        return "Olá, {0}! Aqui está sua mmensagem da fortuna: \n" \
-            "é... Olha o teu watsap".format(name)
+professor = sys.argv[1]
+disciplina = sys.argv[2]
+data = None
+if(len(sys.argv) > 3):
+    data = sys.argv[3]
 
-daemon = Pyro4.Daemon()
-uri = daemon.register(GreetingMaker)
+daemon = Pyro4.Daemon() # cria um daemon do Pyro
+ns = Pyro4.locateNS() # localiza o servidor de nomes
+objeto_original = ListaDeChamada(professor, disciplina, data)
+uri = daemon.register(objeto_original) 
+ns.register("lista-de-chamada", uri) # registra o objeto com um nome no servidor de nomes
 
-print("Pronto! URI = ", uri)
-daemon.requestLoop()
+daemon.requestLoop()   # inicia o servidor
