@@ -3,8 +3,9 @@ import Pyro4
 
 @Pyro4.expose
 class ListaDeChamada():
-    def __init__(self, disciplina, data = None):
+    def __init__(self, professor, disciplina, data = None):
         self.alunos = []
+        self.professor = professor
         self.disciplina = disciplina
         if not data:
             self.data = datetime.now()
@@ -19,6 +20,9 @@ class ListaDeChamada():
 
     def verDisciplina(self):
         return self.disciplina
+
+    def verProfessor(self):
+        return self.professor
 
     def verData(self):
         return self.data.strftime("%d/%m/%Y")

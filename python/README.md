@@ -29,7 +29,7 @@ python -m Pyro4.naming
 ## Rodar servidor usando o servidor de nomes
 
 ```bash
-python '.\servidor copy.py'
+python '.\servidor copy.py' <<NOME-DO-PROFESSOR>> <<DISCIPLINA>> <<opcional:DATA>>
 ```
 
 ## Rodar cliente usando o servidor de nomes

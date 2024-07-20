@@ -12,6 +12,7 @@ while True:
     print("1. Ver lista de alunos")
     print("2. Ver disciplina")
     print("3. Ver data")
+    print("4. Ver professor")
     print("99. Encerrar programa")
     opcao = int(input("--> "))
     if(opcao == 0):
@@ -30,5 +31,7 @@ while True:
         print("Disciplina: ", lista_de_chamada.verDisciplina())
     elif(opcao == 3):
         print(lista_de_chamada.verData())
+    elif(opcao == 4):
+        print(lista_de_chamada.verProfessor())
     else:
         print("Opção inválida")
