@@ -10,6 +10,7 @@ class ListaDeChamada():
             self.data = datetime.now()
         else:
             self.data = datetime.strptime(data, "%d/%m/%Y") # TODO: tratar ValueError (quando a string não está no formato correto)
+        print(type(self.data))
 
     def adicionarAluno(self, nome_do_aluno):
         self.alunos.append(nome_do_aluno)
