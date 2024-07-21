@@ -12,7 +12,11 @@ def iniciarProcessoEmSegundoPlano():
     return Pyro4.Daemon()
 
 def procurarServidorDeNomes():
-    return Pyro4.locateNS()
+    try:
+        return Pyro4.locateNS()
+    except Pyro4.errors.NamingError:
+        print("Servidor de nomes não encontrado")
+        return exit()
 
 def transformarObjetoOriginalEmObjetoPyro(objeto):
     return daemon.register(objeto)
