@@ -32,6 +32,7 @@ def decidirCaminho(opcao, ja_assinou):
     else:
         print("Opção inválida")
 
+# início do programa
 nome = pegarNome()
 lista_de_chamada = instanciarObjetoRemoto()
 ja_assinou = False
