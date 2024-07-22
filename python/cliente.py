@@ -8,9 +8,9 @@ def pegarNome():
         exit()
     return sys.argv[1].strip()
 
-def instanciarObjetoRemoto():
+def instanciarObjetoRemoto(uri):
     try:
-        return Pyro4.Proxy("PYRONAME:lista-de-chamada")
+        return Pyro4.Proxy(uri)
     except Pyro4.errors.NamingError:
         print("Erro: Servidor de nomes não encontrado ou objeto remoto 'lista-de-chamada' não registrado.")
         exit()
@@ -51,7 +51,8 @@ def decidirCaminho(opcao, ja_assinou, lista_de_chamada, nome):
 
 # início do programa
 nome = pegarNome()
-lista_de_chamada = instanciarObjetoRemoto()
+uri = input("Cole a URI aqui: ")
+lista_de_chamada = instanciarObjetoRemoto(uri)
 ja_assinou = False
 
 while True:

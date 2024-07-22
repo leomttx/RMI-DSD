@@ -2,14 +2,14 @@ import Pyro4, sys
 from ListaDeChamada import ListaDeChamada
 
 def pegarArgumentosDaLinhaDeComando():
-    if(len(sys.argv) < 3):
-        print("Uso: python3 ", sys.argv[0], " <professor> <disciplina> [data]")
+    if(len(sys.argv) < 4):
+        print("Uso: python3 ", sys.argv[0], " <professor> <disciplina> <host> [data]")
         print("Exemplo: python3 ", sys.argv[0], " Lisiane POO 2020-09-01")
         exit()
-    return sys.argv[1], sys.argv[2], sys.argv[3] if(len(sys.argv) > 3) else None
+    return sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4] if(len(sys.argv) > 4) else None
 
-def iniciarProcessoEmSegundoPlano():
-    return Pyro4.Daemon()
+def iniciarProcessoEmSegundoPlano(host):
+    return Pyro4.Daemon(host = host)
 
 def procurarServidorDeNomes():
     try:
@@ -28,13 +28,11 @@ def rodarOProcesso():
     daemon.requestLoop()
 
 # início do programa
-professor, disciplina, data = pegarArgumentosDaLinhaDeComando()
+professor, disciplina, host, data = pegarArgumentosDaLinhaDeComando()
 
-daemon = iniciarProcessoEmSegundoPlano() # cria um daemon do Pyro
-ns = procurarServidorDeNomes() # localiza o servidor de nomes
+daemon = iniciarProcessoEmSegundoPlano(host) # cria um daemon do Pyro
 objeto_original = ListaDeChamada(professor, disciplina, data)
 uri = transformarObjetoOriginalEmObjetoPyro(objeto_original) # registra o objeto no daemon e retorna a URI
-registrarObjetoPyroNoServidorDeNomes(ns, uri) # registra o objeto com um nome no servidor de nomes
 print("✅ Servidor configurado ()\n✅ Chamada iniciada")
 print("🌐 ", uri)
 print("💡 Para parar o servidor, aperte Ctrl + C\n💡 Um registro da chamada será salvo no computador")
