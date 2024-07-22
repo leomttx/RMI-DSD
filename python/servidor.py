@@ -34,6 +34,16 @@ daemon = iniciarProcessoEmSegundoPlano() # cria um daemon do Pyro
 ns = procurarServidorDeNomes() # localiza o servidor de nomes
 objeto_original = ListaDeChamada(professor, disciplina, data)
 uri = transformarObjetoOriginalEmObjetoPyro(objeto_original) # registra o objeto no daemon e retorna a URI
-print("URI: ", uri)
 registrarObjetoPyroNoServidorDeNomes(ns, uri) # registra o objeto com um nome no servidor de nomes
+print("✅ Servidor configurado ()\n✅ Chamada iniciada")
+print("🌐 ", uri)
+print("💡 Para parar o servidor, aperte Ctrl + C\n💡 Um registro da chamada será salvo no computador")
 rodarOProcesso()   # inicia o servidor
+
+nome_do_arquivo = str("lista-de-chamada-" + objeto_original.verDisciplina() + "-" + objeto_original.verData().replace("/", "-") + ".txt")
+with open(nome_do_arquivo, 'w') as arquivo:
+            alunos = objeto_original.verAlunos()
+            arquivo.write(str("[ LISTA DE CHAMADA DA DISCIPLINA " + objeto_original.verDisciplina() + ", MINISTRADA POR " + objeto_original.verProfessor() + " — DIA " + objeto_original.verData() + "]\n"))
+            for index, aluno in enumerate(alunos):
+                arquivo.write("\t — Aluno #" + str(index) + ":" + aluno + "\n")
+print("✅ Registro salvo (", nome_do_arquivo, ")")

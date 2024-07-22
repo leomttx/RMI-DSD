@@ -39,9 +39,9 @@ def decidirCaminho(opcao, ja_assinou, lista_de_chamada, nome):
             print("Chamada respondida com sucesso")
         elif opcao == 1:
             alunos = lista_de_chamada.verAlunos()
-            print("[ LISTA DE CHAMADA DA DISCIPLINA", lista_de_chamada.verDisciplina(), ", MINISTRADA POR", lista_de_chamada.verProfessor(), "— DIA", lista_de_chamada.verData(), "]")
+            print("[ LISTA DE CHAMADA DA DISCIPLINA ", lista_de_chamada.verDisciplina(), ", MINISTRADA POR ", lista_de_chamada.verProfessor(), " — DIA ", lista_de_chamada.verData(), "]")
             for index, aluno in enumerate(alunos):
-                print("\t — Aluno #", index, ":", aluno)
+                print("\t — Aluno #", index, ": ", aluno)
         else:
             print("Opção inválida")
     except Pyro4.errors.CommunicationError:
