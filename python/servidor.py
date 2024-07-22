@@ -45,5 +45,5 @@ with open(nome_do_arquivo, 'w') as arquivo:
             alunos = objeto_original.verAlunos()
             arquivo.write(str("[ LISTA DE CHAMADA DA DISCIPLINA " + objeto_original.verDisciplina() + ", MINISTRADA POR " + objeto_original.verProfessor() + " — DIA " + objeto_original.verData() + "]\n"))
             for index, aluno in enumerate(alunos):
-                arquivo.write("\t — Aluno #" + str(index) + ":" + aluno + "\n")
+                arquivo.write("\t — Aluno #" + str(index) + ": " + aluno + "\n")
 print("✅ Registro salvo (", nome_do_arquivo, ")")
