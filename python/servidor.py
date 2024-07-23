@@ -1,4 +1,4 @@
-import Pyro4, sys
+import Pyro4, sys, socket
 from ListaDeChamada import ListaDeChamada
 
 def pegarArgumentosDaLinhaDeComando():
