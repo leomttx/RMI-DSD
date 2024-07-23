@@ -8,6 +8,11 @@ def pegarArgumentosDaLinhaDeComando():
         exit()
     return sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4] if(len(sys.argv) > 4) else None
 
+def pegarIp():
+    hostname = socket.gethostname()
+    ip = socket.gethostbyname(hostname)
+    return ip
+
 def iniciarProcessoEmSegundoPlano(host):
     return Pyro4.Daemon(host = host)
 
@@ -30,7 +35,7 @@ def rodarOProcesso():
 # início do programa
 professor, disciplina, host, data = pegarArgumentosDaLinhaDeComando()
 
-daemon = iniciarProcessoEmSegundoPlano(host) # cria um daemon do Pyro
+daemon = iniciarProcessoEmSegundoPlano(pegarIp()) # cria um daemon do Pyro
 objeto_original = ListaDeChamada(professor, disciplina, data)
 uri = transformarObjetoOriginalEmObjetoPyro(objeto_original) # registra o objeto no daemon e retorna a URI
 print("✅ Servidor configurado ()\n✅ Chamada iniciada")
