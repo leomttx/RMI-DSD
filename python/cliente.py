@@ -1,10 +1,10 @@
 import Pyro4
 import sys
 
-def pegarNome():
+def pegarArgumentosDaLinhaDeComando():
     if len(sys.argv) < 2:
         print("Uso: python3", sys.argv[0], "<nome-do-aluno>")
-        print("Exemplo: python3", sys.argv[0], "Lisiane")
+        print("Exemplo: python3", sys.argv[0], "Catarina Barreto")
         exit()
     return sys.argv[1].strip()
 
@@ -50,9 +50,8 @@ def decidirCaminho(opcao, ja_assinou, lista_de_chamada, nome):
     return ja_assinou
 
 # início do programa
-nome = pegarNome()
-uri = input("Cole a URI aqui: ")
-lista_de_chamada = instanciarObjetoRemoto(uri)
+nome = pegarArgumentosDaLinhaDeComando()
+copia_do_objeto_original = instanciarObjetoRemoto("PYRONAME:lista-de-chamada")
 ja_assinou = False
 
 while True:
@@ -60,4 +59,4 @@ while True:
     opcao = aguardarOpcao()
     if opcao == 99:
         break
-    ja_assinou = decidirCaminho(opcao, ja_assinou, lista_de_chamada, nome)
+    ja_assinou = decidirCaminho(opcao, ja_assinou, copia_do_objeto_original, nome)
